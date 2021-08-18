@@ -3,20 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
-	<title>IPFS图床.</title>
-	<meta name="keywords" content="IPFS图床,IPFS,去中心化图床,永久图床" />
-	<link rel="shortcut icon" href="https://pic.rmb.bdstatic.com/bjh/7f258369bc7cae227053a6588adb2453.png" />
+	<title>IPFS</title>
+	<meta name="keywords" content="IPFS" />
   	<link rel="stylesheet" href="./static/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 	<script src="./static/file.js"></script>
-	<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?47096df5fe81654d11927a045faab501";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>
 	<meta name="referrer" content="no-referrer" />
 </head>
 <body>
 	<input id="file" type="file" multiple="multiple" style="display: none;">
 	<div class="container">
 		<div class="upload">
-			<div class="title">IPFS图床<small style="font-size:10px;">(文件传到ipfs星际文件系统)</small><input id="xkx" autocomplete="off" maxlength="16" style="display: none;" placeholder="请上传...">
+			<div class="title">IPFS<small style="font-size:10px;">(文件传到ipfs星际文件系统)</small><input id="xkx" autocomplete="off" maxlength="16" style="display: none;" placeholder="请上传...">
 			</div>
 			<div class="content" id="dragbox">
 				<svg class="icon" viewBox="0 0 1335 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -30,11 +28,11 @@
 		<div class="filelist">
 			<div class="title">上传列表
 				<div class="copyall" style="display:none">
-					<button title="ipfs.io永久链接国内不能访问| cf-ipfs.com是cloudflare节点 | xkx.me是本站提供节点" style="width:70px;background-color: #d0dbee;">网关<span class="tooltiptext">ipfs.io永久链接国内不能访问| cf-ipfs.com是cloudflare节点 | xkx.me是本站提供节点</span></button>
-					<button onclick="chage(this);" value="ipfs.io" id="ipfs">ipfs.io</button>
-					<button onclick="chage(this);" value="cf-ipfs.com" id="cf-ipfs">cf-ipfs</button>
+					<button style="width:70px;background-color: #d0dbee;">网关</button>
+					<button onclick="chage(this);" value="cf-ipfs.com" id="cf-ipfs">CloudFl</button>
                     <button onclick="chage(this);" value="ipfs.fleek.co" id="fleek">fleek.co</button>
-					
+					<button onclick="chage(this);" value="ipfs.drink.cafe" id="cafe">cafe</button>
+					<button onclick="chage(this);" value="crustwebsites.net" id="crustwebsites">crust</button>
                 </div>
 			    <div class="copyall" style="display:none">
 					<button onclick="copyAll(this);" name="xkx" id="copyAll" style="width:70px;background-color: #d0dbee;">复制全部</button>
@@ -51,9 +49,7 @@
 		<div style="height: 20px">
 		<p style="color:#000;">您的IP:
 		<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-		<script>document.write(returnCitySN["cname"])</script>  
-		© 
-		<a style="text-decoration:none;" href="https://api.xkx.me/">更多：xKx.Me
+		<script>document.write(returnCitySN["cip"])</script>  
 		</p>
 		</div>
 		</div>
