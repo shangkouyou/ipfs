@@ -58,16 +58,17 @@ $(() => {
  	        var file = files[i];
  	        if(!file){return false;}
  	        var fileSize = file.size;
-            var maxSize = 5242880*20;
-            if(ext !='.PNG' && ext !='.GIF' && ext !='.JPG' && ext !='.JPEG' && ext !='.BMP'&& ext !='.SVG'&& ext !='.TIF'&& ext !='.ICO'&& ext !='.3GP'&& ext !='.AVI'&& ext !='.FLV'&& ext !='.MOV'&& ext !='.MKV'&& ext !='.MP4'&& ext !='.MP3'&& ext !='.FLAC'&& ext !='.WEBP'&& ext !='.MPG'&& ext !='.MPEG'&& ext !='.M3U8'&& ext !='.RM'&& ext !='.RMVB'&& ext !='.TS'&& ext !='.wmv'&& ext !='.asf'&& ext !='.webm'&& ext !='.ogg'&& ext !='.ACC'&& ext !='.M4A'&& ext !='.APE'&& ext !='.TXT'&& ext !='.JSON'&& ext !='.DOC'&& ext !='.DOCX'&& ext !='.XLS'&& ext !='.XLSX'&& ext !='.CSV'&& ext !='.SQL'&& ext !='.BAK'&& ext !='.PPT'&& ext !='.PPTX'&& ext !='.ZIP'&& ext !='.RAR'&& ext !='.7Z'&& ext !='.GZ'&& ext !='.TAR'&& ext !='.ISO'&& ext !='.MD'&& ext !='.SH'){  
- 		        parent.alert('文件类型错误,请上传图片类型');
- 		        $('#file').val(null);return false;  
- 	        }else if(parseInt(fileSize) >= parseInt(maxSize)){  
+            var maxSize = 5242880*20*2;
+            // if(ext !='.PNG' && ext !='.GIF' && ext !='.JPG' && ext !='.JPEG' && ext !='.BMP'&& ext !='.SVG'&& ext !='.TIF'&& ext !='.ICO'&& ext !='.3GP'&& ext !='.AVI'&& ext !='.FLV'&& ext !='.MOV'&& ext !='.MKV'&& ext !='.MP4'&& ext !='.MP3'&& ext !='.FLAC'&& ext !='.WEBP'&& ext !='.MPG'&& ext !='.MPEG'&& ext !='.M3U8'&& ext !='.RM'&& ext !='.RMVB'&& ext !='.TS'&& ext !='.wmv'&& ext !='.asf'&& ext !='.webm'&& ext !='.ogg'&& ext !='.ACC'&& ext !='.M4A'&& ext !='.APE'&& ext !='.TXT'&& ext !='.JSON'&& ext !='.DOC'&& ext !='.DOCX'&& ext !='.XLS'&& ext !='.XLSX'&& ext !='.CSV'&& ext !='.SQL'&& ext !='.BAK'&& ext !='.PPT'&& ext !='.PPTX'&& ext !='.ZIP'&& ext !='.RAR'&& ext !='.7Z'&& ext !='.GZ'&& ext !='.TAR'&& ext !='.ISO'&& ext !='.MD'&& ext !='.SH'){  
+ 		    //     parent.alert('文件类型错误,请上传图片类型');
+ 		    //     $('#file').val(null);return false;  
+ 	        // }else 
+            if(parseInt(fileSize) >= parseInt(maxSize)){  
  		        parent.alert('上传的文件不能超过'+maxSize/1024/1024+'MB');return false;  
  	        }else{
  	        document.querySelector('.container').classList.add('start')
  	        var type = $('#id');
-  	        api = 'https://ipfs.infura.io:5001/api/v0/add?pin=true'
+  	        api = 'https://ipfs.staging.infura.org:5001/api/v0/add?pin=true'
             let formData = new FormData();
             formData.append('file', files[i]);
             let randomClass = Date.now().toString(36);
@@ -143,7 +144,7 @@ $(() => {
                     return xhr;
                 },
                 success: res => {
-                    var imgSrc = 'https://ipfs.fleek.co/ipfs/'+res.Hash
+                    var imgSrc = 'https://cf-ipfs.com/ipfs/'+res.Hash
                     /* 清除input框 */
                     $('#file').val(null);
                     if (res.code === -1) {
@@ -244,10 +245,17 @@ function sel(obj){
 }
 function chage(obj){
 	for(var i=0;i<document.querySelectorAll("#show").length;i++){
-		var newurl = document.querySelectorAll("#show")[i].value.replace(/https:\/\/([^\/]+)/i,"https://"+obj.value);
+        var id = document.querySelectorAll("#show")[i].value.match(/\w{46}/g)[0];
+        // if(obj.indexOf("cf-ipfs.com")!=-1){
+        //     var newurl = 'https://bafybeidzqxzosahqotekbeb47i6ubstxtkmoxva4oi6fs77siyqqwz6nxq.ipfs.cf-ipfs.com/';
+        // }else{
+            
+        // }
+        var newurl = 'https://'+obj.value+"/ipfs/"+id;
+		
 		document.querySelectorAll("#show")[i].value = newurl;
 		document.querySelectorAll(".list .file #url")[i].href=newurl;
-		console.log(newurl);
+		//console.log(newurl);
 	}
 }
 function copyAll(obj){
@@ -284,3 +292,4 @@ function browserRedirect(){
    	if(bIsIpad || bIsIphone || bIsMidp || bIsUc7 || bIsUc || bIsCE || bIsWM || bIsAndroid ){
  	    return 1;}
 }
+
